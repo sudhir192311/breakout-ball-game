@@ -1,0 +1,207 @@
+ ˛∫æ   4∫  game_jpp20/GameRunner  javafx/application/Application SINGLE_PLAYER_BUTTON_Y_POSITION D ConstantValue?√333333 SINGLE_PLAYER_BUTTON_X_POSITION@333333 POINTS_PER_BREAK I    MULTIPLAYER_BLOCK_GENERAT0R_KEY@ôôôôôö BOUNCER_OFFSET_SINGLEPLAYER?·ôôôôôö BOUNCER_1_OFFSET?Â∏QÎÖ BOUNCER_2_OFFSET?’∏QÎÖ TITLE Ljava/lang/String;  sudhir's Breakout Game WINDOW_WIDTH  ê WINDOW_HEIGHT  X GAME_BACKGROUND Ljavafx/scene/paint/Paint; MENU_BACKGROUND FRAMES_PER_SECOND   < MILLISECOND_DELAY    SECOND_DELAY?ë 
+BALL_IMAGE 0 tennisBall.png PLATFORM_IMAGE 3 paddleBlu.png POWER_UP_IMAGE 6 powerUP.png PADDLE_WIDTH   7 PADDLE_HEIGHT    PLAYER_ONE_Y_POSITION  ( PLAYER_TWO_Y_POSITION   x TOP_SCORE_COVERAGE BLOCK_WIDTH   ( BLOCK_HEIGHT    STARTING_LIVES_AMOUNT    POWER_UP_SIZE POWER_UP_DROP_RATE?πôôôôôö POWER_UP_TIMEOUT J      N  MAX_LEVEL_AMOUNT   
+ STARTING_LEVEL    mainMenuScene Ljavafx/scene/Scene; multiplayerGameScene singlePlayerGameScene myStage Ljavafx/stage/Stage; paddle1 Lgame_jpp20/PlayerPaddle; paddle2 currentBouncers Ljava/util/List; 	Signature ,Ljava/util/List<Lgame_jpp20/BouncerObject;>; currentBlocks $Ljava/util/List<Lgame_jpp20/Block;>; currentPowerUps &Ljava/util/List<Lgame_jpp20/PowerUp;>; currentPaddles +Ljava/util/List<Lgame_jpp20/PlayerPaddle;>; currentScore currentLevel currentLives player2Lives scoreDisplay Ljavafx/scene/text/Text; lifeDisplay player2LifeDisplay singlePlayerRoot Ljavafx/scene/Group; multiplayerRoot scoreMultiplier powerUpTimer Ljava/util/Timer; animationFrameInitialized Z 	animation Ljavafx/animation/Timeline; isMultiplayer <clinit> ()V Code	 | ~ } javafx/scene/paint/Color  Ä CORNFLOWERBLUE Ljavafx/scene/paint/Color;	  Ç $ %	  Ñ & % LineNumberTable LocalVariableTable <init>
+  â á y ã java/util/ArrayList
+ ä â	  é [ \	  ê _ \	  í a \	  î c \	  ñ f 	  ò g 	  ö h 	  ú p  û java/util/Timer
+ ù â	  ° q r this Lgame_jpp20/GameRunner; start (Ljavafx/stage/Stage;)V	  ß V W © game_jpp20/GameRunner$1
+ ® ´ á ¨ (Lgame_jpp20/GameRunner;)V
+ Æ ∞ Ø javafx/stage/Stage ± ≤ setOnCloseRequest (Ljavafx/event/EventHandler;)V
+  ¥ µ ∂ setupMainMenuScene 2(IILjavafx/scene/paint/Paint;)Ljavafx/scene/Scene;	  ∏ R S
+  ∫ ª y setToMainMenu
+ Æ Ω æ ø setTitle (Ljava/lang/String;)V
+ Æ ¡ ¬ y show	  ƒ s t ∆ javafx/animation/KeyFrame@0      
+   Ã À javafx/util/Duration Õ Œ millis (D)Ljavafx/util/Duration; – — handle 4(Lgame_jpp20/GameRunner;)Ljavafx/event/EventHandler;   œ ‘ javafx/animation/KeyValue
+ ≈ ÷ á ◊ P(Ljavafx/util/Duration;Ljavafx/event/EventHandler;[Ljavafx/animation/KeyValue;)V Ÿ javafx/animation/Timeline
+ ÿ â	  ‹ u v
+ ÿ ﬁ ﬂ ‡ setCycleCount (I)V
+ ÿ ‚ „ ‰ getKeyFrames %()Ljavafx/collections/ObservableList; Ê Ë Á !javafx/collections/ObservableList È Í add (Ljava/lang/Object;)Z s frame Ljavafx/animation/KeyFrame; StackMapTable	   e 
+ Æ Ú Û Ù setScene (Ljavafx/scene/Scene;)V ˆ javafx/scene/Group
+ ı â ˘ javafx/scene/text/Text@.      @>       ˇ -Breakout: Choose single player or multiplayer
+ ¯ á (DDLjava/lang/String;)V
+ ı ‰ getChildren javafx/scene/Scene
+	 á
+ 4(Ljavafx/scene/Parent;DDLjavafx/scene/paint/Paint;)V javafx/scene/control/Button Single Player
+ á ø  œ
+ ≤ setOnAction
+ 
+setLayoutX (D)V
+ 
+setLayoutY Multi Player  œ?¯      @I      ?÷ffffff&—In single player use the keys A and D to move left and right. You start with threee livesso be careful. The goal is to break as many blocks as you can before losing all you lives by allowing the ball to pass your paddle. In multiplayer player one will still use A and D to move, and now player 2 will use both arrow keys to control a paddle on the topthe first play to let three balls past their paddle loses! 
+ 
+ Press the space bar to pause and unpause the balls.?Èôôôôôö
+ ¯*+ setWrappingWidth windowWidth windowHeight 
+background root 
+GamePrompt scene singlePlayerButton Ljavafx/scene/control/Button; multiplayerButton instructionPrompt setToMultiplayer	 8 w t
+ :; y clearGameObjects
+ => ∂ setupMultiPlayerScene	 @ T S
+ ÿBC y play setToSingleplayer
+ FG ∂ setupSinglePlayer	 I U S	 K m n
+ MNO 
+addPaddle1 (ILjavafx/scene/Group;)V  œ
+RS ≤ setOnKeyPressed  œ
+VW ≤ setOnMouseClicked
+ YZ[ 
+addBouncer 2(DDLjavafx/scene/Group;)Lgame_jpp20/BouncerObject;
+ ]^_ generateSinglePlayerBlocks (IILjavafx/scene/Group;)V
+ ab_ drawTopLine
+ def addText (Ljavafx/scene/Group;)V width heightj javafx/scene/image/Image
+lnm java/lang/Objectop getClass ()Ljava/lang/Class;
+rts java/lang/Classuv getClassLoader ()Ljava/lang/ClassLoader;
+xzy java/lang/ClassLoader{| getResourceAsStream )(Ljava/lang/String;)Ljava/io/InputStream;
+i~ á (Ljava/io/InputStream;)VÅ game_jpp20/PlayerPaddle
+ÄÉ áÑ !(Ljavafx/scene/image/Image;IIII)V	 Ü X Y
+Äàâä getView ()Ljavafx/scene/Node;å Ëç java/util/List paddleImage Ljavafx/scene/image/Image;ë game_jpp20/Block
+êì áî (IIILjavafx/scene/Group;II)V i j block1 Lgame_jpp20/Block;ö Current Level:
+ ¯úùû layoutBoundsProperty 0()Ljavafx/beans/property/ReadOnlyObjectProperty;
+†¢° ,javafx/beans/property/ReadOnlyObjectProperty£§ getValue ()Ljava/lang/Object;¶ javafx/geometry/Bounds
+•®©™ getWidth ()D@$      
+Æ∞Ø java/lang/Integer±≤ toString (I)Ljava/lang/String;@i      ∂ Current Lives:∏ Player 1 Lives:	 ∫ k j@N      æ Player 2 Lives:	 ¿ l j¬ Current Score:	 ƒ i j levelPrompt levelDisplay 
+lifePrompt scorePrompt	   o n
+ ÃÕ ‡ 
+addPaddle2  œ  œ
+ —“_ generateMultiPlayerBlocks
+ ‘’ y 
+resetLives	 ◊ Z YŸ javafx/scene/shape/Line
+ÿ€ á‹ (DDDD)V line1 Ljavafx/scene/shape/Line;‡ game_jpp20/BouncerObject
+ﬂ‚ á„ !(Ljavafx/scene/image/Image;IIDZ)V
+ﬂà 	xPosition 	yPosition currentBouncer Lgame_jpp20/BouncerObject;?Î333333 playerTwoLoseLife (Lgame_jpp20/BouncerObject;)V
+ ¯ÓÔ ø setText
+ﬂÒÚ y setInitialPosition
+ Ùı y handleGameOver
+ﬂ˜¯ y togglePause b loseLifeSinglePlayer
+ ¸˝ y updateLivesDisplay
+ ÿˇ  y stop gainLifeSinglePlayer step
+  moveBouncers
+  y handlePowerUpMovment
+ 
+ y handleBouncerCollisions
+  y checkLevelBeat elapsedTimeå size ()I
+  y incrementLevelå iterator ()Ljava/util/Iterator; java/util/Iterator§ next
+!#" javafx/scene/Node$% getBoundsInParent ()Ljavafx/geometry/Bounds;
+•'() 
+intersects (Ljavafx/geometry/Bounds;)Z
+Ä+,- isSuper ()Z
+ﬂ/0 y increaseSpeed
+Ä23- isTiny
+ﬂ56 y reduceSpeed
+ﬂ89: bounce (Z)V
+ê<â=  ()Ljavafx/scene/image/ImageView;
+?#@ javafx/scene/image/ImageView
+êBC- 
+getRemoved
+ﬂE9 y
+ GHI 
+blockBreak (Lgame_jpp20/Block;)VKL- hasNextåNO Í remove@y      @Ç¿     
+ﬂUVW 
+wallBounce (DD)V blocksToRemove currentBlock LocalVariableTypeTable
+ﬂ\] move
+ﬂ_`- getLifeLost
+ﬂbc- 	getHitTop
+ eÎÏ
+ g˙Ïi game_jpp20/PowerUp
+hkl y fall
+hno- getOffScreen
+hqO y
+h<
+ tuv givePowerUp (Lgame_jpp20/PlayerPaddle;)V powerUpsToRemove a Lgame_jpp20/PowerUp; currentPaddle
+|~} java/lang/Math™ random
+ Å y
+ ÉÑ y increaseMultiplierÜ small
+ àâä changePaddleSize .(Lgame_jpp20/PlayerPaddle;Ljava/lang/String;)Vå bigé fast
+ êë ø powerUpSpeedì slow powerUpDecider
+ﬂñó ø updateSpeedô game_jpp20/GameRunner$2
+ò ´
+ ùúùû schedule (Ljava/util/TimerTask;J)V speed° java/lang/String resetBallSpeed§  
+Ä¶ß ø 
+updateSize© game_jpp20/GameRunner$3
+®´ á¨ 3(Lgame_jpp20/GameRunner;Lgame_jpp20/PlayerPaddle;)V modifiedPaddle sizeIndicator resetPaddleSize± game_jpp20/GameRunner$4
+∞ ´
+ê¥µ y loseLife?ÏÃÃÃÃÃÕ
+?π∫™ getX
+?ºΩ™ getY
+ ø¿W dropRandomPowerUp brokenBlock
+?√ áƒ (Ljavafx/scene/image/Image;)V
+h∆ á« 9(Ljavafx/scene/image/ImageView;DDDLjavafx/scene/Group;I)V handleMultiplayerKey (Ljavafx/scene/input/KeyCode;)V
+ ÀÃÕ handleSharedKeyInput (Ljavafx/scene/input/KeyCode;)Z	œ—– javafx/scene/input/KeyCode“” LEFT Ljavafx/scene/input/KeyCode;
+Ä’÷ y moveLeft	œÿŸ” RIGHT
+Ä€‹ y 	moveRight code	œﬂ‡” A	œ‚ ”	œ‰Â” L	œÁË” SPACE
+ ÍÎ y pauseOrUnpause	œÌÓ” ENTER handleKeyInput	œÒÚ” R
+ ÙD y	œˆ˜” DIGIT1	œ˘˙” DIGIT2	œ¸˝” DIGIT3	œˇ ” DIGIT4	œ” DIGIT5	œ” DIGIT6	œ	” DIGIT7	œ” DIGIT8	œ” DIGIT9	œ” DIGIT0
+œ getName ()Ljava/lang/String;
+Æ parseInt (Ljava/lang/String;)I
+  ‡ setLevel	œ ” COMMA
+ "# y incrementLife	œ%&” V
+Ä() y makeTinyBounce	œ+,” B
+Ä./ y makeSuperBounce	œ12” N
+Ä45 y 
+makeNormal handleMouseInput
+?89: contains (DD)Z
+ê<= y removeBlock x y levelSelect
+ B6 y
+ ùDE y cancel
+ GH y clearBouncers
+ JK y clearPaddles
+ MN y clearPowerUps
+ PQ y clearBlocksåST y clear main ([Ljava/lang/String;)V
+ XYV launch args [Ljava/lang/String; access$0 *(Lgame_jpp20/GameRunner;)Ljava/util/Timer; access$1
+ `¢ y access$2
+ cØv access$3 (Lgame_jpp20/GameRunner;I)V lambda$0 (Ljavafx/event/ActionEvent;)V
+ i e Ljavafx/event/ActionEvent; lambda$1 lambda$2 lambda$3  (Ljavafx/scene/input/KeyEvent;)V
+qsr javafx/scene/input/KeyEventtu getCode ()Ljavafx/scene/input/KeyCode;
+ wÔ… Ljavafx/scene/input/KeyEvent; lambda$4 "(Ljavafx/scene/input/MouseEvent;)V
+|π} javafx/scene/input/MouseEvent
+|º
+ Ä6W Ljavafx/scene/input/MouseEvent; lambda$5
+ Ñ»… lambda$6 
+SourceFile GameRunner.java BootstrapMethods
+äåã "java/lang/invoke/LambdaMetafactoryçé metafactory Ã(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;â (Ljavafx/event/Event;)Vê
+ ìfgígê
+ òlgógê
+ ùmgúgê
+ ¢no°oê
+ ßyz¶zê
+ ¨Ço´oê
+ ±Öz∞z InnerClasses∂ %java/lang/invoke/MethodHandles$Lookup∏ java/lang/invoke/MethodHandles Lookup !     7           
+                                                                       !  "       #  $ %    & %    '       (  )       *  +       ,  .       /  1       2  4       5  7       8  9       :  ;       <  =       >  ?         @       A  B       C  D       E  F       C  G       H  J K      L  N       O  P       Q  R S    T S    U S    V W    X Y    Z Y    [ \  ]    ^  _ \  ]    `  a \  ]    b  c \  ]    d  e     f     g     h     i j    k j    l j    m n    o n    p     q r    s t    u v    w t   <  x y  z   5      ≤ {≥ Å≤ {≥ É±    Ö       ,  -  @ Ü       á y  z   ¢     P*∑ à*ª äY∑ åµ ç*ª äY∑ åµ è*ª äY∑ åµ ë*ª äY∑ åµ ì*µ ï*µ ó*µ ô*µ õ*ª ùY∑ üµ †±    Ö   .    !  J  K  L % M 0 P 5 Q : R ? X D Y O ! Ü       P ¢ £    § •  z        *+µ ¶*¥ ¶ª ®Y*∑ ™∂ ≠**êX≤ É∑ ≥µ ∑*∑ π*¥ ¶∂ º*¥ ¶∂ ¿*¥ √ö Aª ≈Y «∏ …*∫ “  Ω ”∑ ’M*ª ÿY∑ ⁄µ €*¥ €∂ ›*¥ €∂ ·,π Â W*µ √±    Ö   >    c  d  k % l ) m 2 n 9 p @ q J r P q X s c t k u y v ~ x Ü         ¢ £      Î W  X & Ï Ì  Ó    ˚ ~  ª y  z   ^      *µ ó*µ ô*µ Ô*µ ï*¥ ¶*¥ ∑∂ Ò±    Ö       {  | 
+ }  ~    Å Ü         ¢ £    µ ∂  z  £  
+   €ª ıY∑ ˜:ª ¯Y ˙ ¸˛∑ :∂π Â WªYáá-∑:ªY∑:*∫  ∂á o∂á k∂∂π Â WªY∑:*∫  ∂áo∂á k∂∂π Â Wª ¯Y!á#k%∑ :		á'k∂)∂	π Â W∞    Ö   J    Ñ 	 á  à ' ã 7 å C ç N é Y è d ê q í } ì à î ì ï û ñ ´ ô ¿ û À ü ÿ ¢ Ü   f 
+   € ¢ £     €,     €-     €. %  	 “/ n   ¡0 j  7 §1 S  C ò23  } ^43  ¿ 5 j 	 6 y  z   k     -*µ7*∂9**êX≤ Å∑<µ?*¥ ¶*¥?∂ Ò*¥ €∂A±    Ö       ¶  ß 	 ®  © % ™ , ´ Ü       - ¢ £   D y  z   k     -*µ7*∂9**êX≤ Å∑EµH*¥ ¶*¥H∂ Ò*¥ €∂A±    Ö       Æ  Ø 	 ∞  ± % ≤ , ≥ Ü       - ¢ £   G ∂  z   Ï     hª ıY∑ ˜:*µJªYáá-∑:*∑L*∫P  ∂Q*∫T  ∂U*láá k∑XW*∑\**¥J∑`*∑c∞    Ö   .    ∂ 	 ∑  ∏  ∫ & º 1 Ω < æ M ¿ U √ _ ≈ e « Ü   >    h ¢ £     hg     hh     h. %  	 _/ n   I1 S  NO  z   †     HªiY*∂k∂q2∂w∑}N*ªÄY-7(∑ÇµÖ,∂*¥Ö∂áπ Â W*¥ ì*¥Öπã W±    Ö       Ã  Õ ( Œ 9 œ G – Ü   *    H ¢ £     Hg     H/ n   4éè  ^_  z   ‚     P6ß C6ß 4ªêYá kdhácé-(∑í:*¥ èπã WÑ(°ˇÃÑ*¥ ï§ˇ∫±    Ö       ”  ‘  ’ . ÷ : ‘ C ” O ⁄ Ü   H    P ¢ £     Pg     Ph     P/ n   Lï   	 :ñ   . óò  Ó    ¸ ¸ 0˙  ef  z  D    xª ¯Y ˙ ¸ô∑ M+∂,π Â Wª ¯Y ˙,∂õ∂ü¿•∂ßc´c ¸*¥ ï∏≠∑ N+∂-π Â W*¥7ö ª ¯Y≥ ¸µ∑ ß ª ¯Y≥ ¸∑∑ :+∂π Â W*ª ¯Y≥∂õ∂ü¿•∂ßc´c ¸*¥ ó∏≠∑ µπ+∂*¥ππ Â W*¥7ô ]ª ¯Y ˙ªΩ∑ :+∂π Â W*ª ¯Y ˙∂õ∂ü¿•∂ßc´cª*¥ ô∏≠∑ µø+∂*¥øπ Â Wß Zª ¯Y ˙ª¡∑ :+∂π Â W*ª ¯Y ˙∂õ∂ü¿•∂ßc´cª*¥ Ô∏≠∑ µ√+∂*¥√π Â W±    Ö   N    ﬁ  ﬂ  ‡ C · N „ z ‰ Ü Â ± Ê ø Ë ∆ È ÿ Í ‰ Î Ï Ì  Ô2 > Òi Úw ˜ Ü   H   x ¢ £    x/ n  g≈ j  C5∆ j  z ˛« j  ÿ E» j 2 E» j  Ó    ˝ h ¯ ¯O ¯¸ ß ¯˚ V > ∂  z       äª ıY∑ ˜:*µ…ªY*¥…áá-∑:*∑L*∑À*∫Œ  ∂Q*∫œ  ∂U*láá k*¥…∑XW*láá k*¥…∑XW**¥…∑–**¥…∑`*∑c*∑”∞    Ö   :    ˙ 	 ˚  ¸ ! ˛ ( ˇ - 8 C V i s } É
+ á Ü   >    ä ¢ £     ä,     ä-     ä. %  	 Å/ n  ! i1 S  Õ ‡  z   ò     JªiY*∂k∂q2∂w∑}M*ªÄY,7x∑Çµ÷*¥…∂*¥÷∂áπ Â W*¥ ì*¥÷πã W±    Ö        ' ; I Ü        J ¢ £     J,    6éè  b_  z        %ªÿYá káá k∑⁄:-∂π Â W±    Ö        $ Ü   4    % ¢ £     %,     %-     %/ n   ›ﬁ  ’ y  z   4     *µ ó±    Ö   
+     Ü        ¢ £   Z[  z   §     FªﬂYªiY*∂k∂q/∂w∑}'é)é *¥7∑·:*¥ çπã W∂∂‰π Â W∞    Ö       '  3! C" Ü   4    F ¢ £     FÂ     FÊ     F/ n  ' ÁË  “_  z  e 	    ®*¥ ï6ß ú6ß ?ªêYá kdhácáÈk océ-(∑í:*¥ èπã WÑ(°ˇ¡6ß Eü <ªêYá kdhágáÈk océ-(∑í:*¥ èπã WÑ(°ˇªÑˇùˇe±    Ö   2   ' 	( ) <* H( Q, W- ]. ä/ ñ, ü' ß3 Ü   \ 	   ® ¢ £     ®,     ®-     ®/ n   °ï    Eñ   < óò  T Kñ   ä óò  Ó    ¸ 	¸ ;>˙  ÎÏ  z   ë     3*Y¥ ôdµ ô*¥ø*¥ ô∏≠∂Ì*¥ ôû +∆ +∂ß *∑Û+∂ˆ±    Ö   & 	  6 
+7 9 : #; '= *? .A 2B Ü       3 ¢ £     3˘Ë  Ó    * ˙Ï  z   ì     0*Y¥ ódµ ó*∑˚*¥ óû +∆ +∂ß *∑Û*¥7ô +∂ˆ±    Ö   * 
+  D 
+E G H I K  M $P +Q /T Ü       0 ¢ £     0˘Ë  Ó     
+ ı y  z   >     *¥ €∂˛*∑ π±    Ö      W X Z Ü        ¢ £   ˝ y  z   =     *¥π*¥ ó∏≠∂Ì±    Ö   
+   ] ^ Ü        ¢ £    y  z   A     *Y¥ ó`µ ó*∑˚±    Ö      a 
+b c Ü        ¢ £     z   j     *'∑*¥7ö *∑*∑	*∑±    Ö      g i j l m n Ü        ¢ £        Ó      y  z   L     *¥ èπ ö *∂±    Ö      q r u Ü        ¢ £   Ó      y  z  m    (ª äY∑ åL*¥ çπ Nß-π ¿ﬂM,∂‰∂ *¥Ö∂á∂ ∂&ö !*¥7ô Q,∂‰∂ *¥÷∂á∂ ∂&ô :*¥Ö∂*ô 
+,∂.ß *¥Ö∂1ô ,∂4,,∂‰∂ *¥Ö∂á∂ ∂&∂7*¥ èπ :ß Gπ ¿ê:,∂‰∂ ∂;∂>∂&ô ∂Aö ,∂D*∑F∂Aô +πã WπJ öˇµ+π :ß π ¿ê:*¥ èπM WπJ öˇ·,PR∂T-πJ ö˛Ò±    Ö   ^   x z { 6| T} ^~ b eÄ oÅ sÑ ãà •â ¬ä ∆ã Ãç ‘é ›à Áí ˛ì
+íñz'ò Ü   4   ( ¢ £    X \   ˇ˘Ë  • 8Yò  ˛ Yò Z      X `  Ó   É ˇ   å   ˇ >  åﬂ  ˇ   åﬂ   ˇ 2  åﬂê  ˇ   åﬂ   ˇ   å      z   ‡     K*¥ çπ :ß 5π ¿ﬂN-'∂[-∂^ô -∂aô *¥7ô *-∑dß *-∑fπJ öˇ«±    Ö   & 	  õ ú ù %û 3ü 8† ;¢ @õ J¶ Ü        K ¢ £     K    '˘Ë  Ó   1 ˇ      ˇ ,  ﬂ  ˇ        y  z  µ     ∂ª äY∑ åL*¥ ëπ Nß r-π ¿hM,∂j,∂mô ,∂p+,πã Wß N*¥ ìπ :ß 6π ¿Ä:∂á∂ ,∂r∂>∂&ô ,∂p+,πã W*∑sπJ öˇ∆-πJ öˇã+π Nß -π ¿hM*¥ ë,πM W-πJ öˇÂ±    Ö   J   © ™ ´ #¨ *≠ .Æ 6∞ 9≤ S≥ h¥ lµ t∂ z≤ Ñ™ çª °º ¨ª µæ Ü   4    ∂ ¢ £    Æw \   exy  S 'z Y  ° xy Z      Æw b  Ó   Q ˇ   å   ˇ #  åh  ˇ   åh   2ˇ 	  å    uv  z       y∏{´ké=™    j         *   2   9   @   K   V   `*∑fß ?*∑Äß 8*∑Çß 1*+Ö∑áß &*+ã∑áß *ç∑èß *í∑èß *∑Ä±    Ö   J   ¡ 	¬ 4√ 9ƒ <≈ @∆ C« G» J… R  UÀ ]Ã `Õ gŒ jœ q– t— x‘ Ü        y ¢ £     yz Y  	 pî   Ó    	¸ 4
+
+		 ë ø  z   ®     8*¥ çπ Nß -π ¿ﬂM,+∂ï-πJ öˇÎ*¥ †ªòY*∑ö L∂õ±    Ö      ÿ Ÿ ÿ %€ 1ﬂ 4€ 7‡ Ü        8 ¢ £     8ü    ˘Ë  Ó    ˇ   †    ¢ y  z        (*¥ çπ Mß ,π ¿ﬂL+£∂ï,πJ öˇÈ±    Ö      ‰ Â ‰ 'Á Ü       ( ¢ £    ˘Ë  Ó    ˇ       âä  z   g     +,∂•*¥ †ª®Y*+∑™ L∂õ±    Ö      Í Î Ô Î  Ü         ¢ £     ≠ Y    Æ   Øv  z   @     +£∂•±    Ö   
+   Û Ù Ü        ¢ £     ≠ Y  Ñ y  z   W     *Y¥ õhµ õ*¥ †ª∞Y*∑≤ L∂õ±    Ö      ˜ 
+¯ ¸ ¯ ˝ Ü        ¢ £   HI  z   õ     E*Y¥ Ô*¥ õh`µ Ô*¥7ö *¥√*¥ Ô∏≠∂Ì+∂≥∏{∂óû *+∂;∂∏+∂;∂ª∑æ±    Ö          $ ( 2 D Ü       E ¢ £     E¡ò  Ó    $ ¿W  z   ï     >*¥7ö 9*¥ ëªhYª?YªiY*∂k∂q5∂w∑}∑¬')R*¥J∑≈πã W±    Ö        ) 7 = Ü        > ¢ £     >Â     >Ê   Ó    = »…  z   ~     (*+∑ ö "+≤Œ¶ *¥÷∂‘ß +≤◊¶ 
+*¥÷∂⁄±    Ö             ' Ü       ( ¢ £     (›”  Ó     ÃÕ  z   ∆     I+≤ﬁ¶ *¥Ö∂‘¨+≤·¶ *¥Ö∂⁄¨+≤„¶ 	*∂¨+≤Ê¶ 	*∑È¨+≤Ï¶ 	*∑Û¨¨    Ö   B       " # $  & '' +( -* 4+ 8, :. A/ E0 G3 Ü       I ¢ £     I›”  Ó     Ô…  z  B     ©*+∑ ö £+≤¶ 
+*∑Ûß ï+≤ı• B+≤¯• ;+≤˚• 4+≤˛• -+≤• &+≤• +≤• +≤
+• +≤• 
++≤¶ *+∂∏∑ß A+≤¶ 
+*∑!ß 3+≤$¶ *¥Ö∂'ß "+≤*¶ *¥Ö∂-ß +≤0¶ 
+*¥Ö∂3±    Ö   Z   9 < = > ? @ 2A GB \D gE jF qG uH xJ K ÜL âM êN óO öP °Q ®S Ü       © ¢ £     ©›”  Ó    ˚ E 6W  z  (     xª äY∑ å:*¥ èπ :ß +π ¿ê:∂;')∂7ô πã W∂;πJ öˇ—π :ß π ¿ê:*¥ èπM WπJ öˇ·±    Ö   * 
+  V 	W #X 0Y :Z ?W I] a^ m] wa Ü   >    x ¢ £     x>     x?   	 oX \  # ˘ò  a ˘ò Z     	 oX `  Ó    ˇ   å   ' # y  z   A     *Y¥ ó`µ ó*∑˚±    Ö      e 
+f g Ü        ¢ £   Î y  z   |     %*¥ çπ Mß ,π ¿ﬂL+∂ˆ,πJ öˇÏ±    Ö      j k j $n Ü       % ¢ £    ˘Ë  Ó    ˇ        ‡  z   t     
+¢ ö *
+µ ïß *µ ï*∑Û±    Ö      q r 
+s t v x { Ü        ¢ £     @   Ó      y  z   }     ,*¥ ï`
+£ *Y¥ ï`µ ï*¥7ö *∑!*∑Ûß *∑A±    Ö   "   ~  Å Ç  É $Ñ 'Ü +à Ü       , ¢ £   Ó     ; y  z   e     #*¥ †∂C*ª ùY∑ üµ †*∑F*∑I*∑L*∑O±    Ö      ã å ç é è ê "ë Ü       # ¢ £   Q y  z   8     
+*¥ èπR ±    Ö   
+   î 	ï Ü       
+ ¢ £   N y  z   8     
+*¥ ëπR ±    Ö   
+   ò 	ô Ü       
+ ¢ £   K y  z   8     
+*¥ ìπR ±    Ö   
+   ú 	ù Ü       
+ ¢ £   H y  z   8     
+*¥ çπR ±    Ö   
+   † 	° Ü       
+ ¢ £   	UV  z   3     *∏W±    Ö   
+   ß ® Ü       Z[  \]  z   %     *¥ †∞    Ö       Y Ü     ^ ¨  z   %     *∑_±    Ö      „ Ü     a¨  z   &     *+∑b±    Ö      Ú Ü     de  z   &     *µ õ±    Ö       X Ü     fg  z   <     * ,∑h±    Ö       r Ü        ¢ £     jk lg  z   9     *∑Û±    Ö       ç Ü        ¢ £     jk mg  z   9     *∑A±    Ö       ì Ü        ¢ £     jk no  z   =     	*+∂p∑v±    Ö       º Ü       	 ¢ £     	jx yz  z   A     *+∂{+∂~∑±    Ö       Ω Ü        ¢ £     jÅ Ço  z   =     	*+∂p∑É±    Ö       Ü       	 ¢ £     	jx Öz  z   A     *+∂{+∂~∑±    Ö       Ü        ¢ £     jÅ  Ü   áà   H è ëîïè ñôöè õûüè †£§è •®©è ™≠Æè Ø≤≥¥   *  ®      ò      ®      ∞      µ∑π 

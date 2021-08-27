@@ -1,0 +1,125 @@
+sudhir swain
+Computer science and technology GITA,autonomous collage,2019-21
+Project :Game
+Plan
+======================
+
+Description:
+For my game I plan to make a classic Breakout version with the additional feature
+of a two person mode. Users will be able to select which game mode to play. More 
+details on the planned game are below. 
+
+Single Player Mode
+__________________________________
+
+Block Configuration / Levels:
+	In single player mode the blocks will be generated to correspond with the level
+	the players is currently on. For example, when a player is on level N the level 
+	will start with N rows. The blocks in each row will all have n "lives" where n is 
+	the row the block is part of. An example of this configuration for levels one 
+	through three is shown below. The blocks will in total give a number of points 
+	that is a function of how many times said block had to be hit to break. The
+	different block colors will correspond with the different block types.
+
+
+Level 1:
+ ________
+|11111111|
+|        |
+|        |
+|   .    |
+| _      |
+|________|
+
+Level 2:
+ ________
+|22222222|
+|11111111|
+|    	 |
+|   .    |
+|    _   |
+|________|
+
+
+Level 3:
+ ________
+|33333333|
+|22222222|
+|11111111|
+|   .    |
+|   _    |
+|________|
+
+Paddle:
+	The paddle will be at the bottom of the screen and moved in the x direction using buttons on the keyboard.
+
+Power Ups / Paddle abilities
+	Every time a block loses a life it will have a chance of 
+	dropping each power up. If the users collects the falling
+	power up with his or her paddle they will be rewarded the
+	respective power up. Power ups will expire after a period 
+	of time or will be replaced if another power up is picked
+	up.Some of the power ups I intend to incorporate are listed
+	below.
+	
+	Power ups:
+			- + 1 life
+			- - 1 life
+			- smaller paddle
+			- bigger paddle
+			- strong ball (will break any block regardless of that block's amount of lives)
+			- weak ball (ball will not damage any blocks)
+			- faster ball
+			- slower ball
+			- score multiplier 
+	
+Lives:
+	The player will start with a certain number of lives and every time the ball goes under
+	the paddle, a life will be lost. On the lost of all of lives, the player's game will be
+	over.
+	
+Score display:
+	The players score will be displayed on the top of the screen. The score will be a function
+	of the amount of blocks the player has destroyed. 
+	
+Cheat Keys;
+	The following are a list of cheat keys I plan to incorporate.
+	Keys:
+		P: will pause the ball
+		Mouse Click: will remove a block if said block is clicked
+		Number key: will jump to that level
+		L: Will give the player an additional life
+		R: resets the game to the starting configuration
+	
+Splash Screen:
+	The splash screen will show descriptions of single and multiplayer modes and allow users
+	to select which game mode they want to play.
+	
+Extra Game Feature / Multiplayer Mode:
+
+Description:
+	 Multiplayer mode will be a combination of pong and breakout. There will be two paddles one
+	 towards the top of the screen and one toward the bottom. The second padldle will be controlled
+	 with different keyboard buttons. The game will start with each paddle having its own ball. If a 
+	 ball makes it past a players paddle they will lose a life and lose points. The game will continue
+	 though and the ball will be replaced on the map. When one playerloses all of his or her lives the
+	 game is over and the player with more points is the winner. A diagram of a possible setup is shown 
+	 below.
+	 
+  Multiplayer Level 2:
+     ________ 
+	|  _     |
+	|   .    | 
+	|11111111|
+	|22222222|
+	|11111111|
+	|   .    |
+	|   _    |
+	|________|
+	
+	The score for both players will be displayed at the top of the screen. In multiplayer mode
+	power ups have an equal chance of falling up or down, but will work in generally the same 
+	way as they do in single player.
+	 
+			
+
